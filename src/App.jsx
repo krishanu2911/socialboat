@@ -1,9 +1,13 @@
 import './App.css'
+import { Header, VideoSection } from './components'
 
 function App() {
 
   return (
-    <div className=' w-full min-h-screen text-red-200'>Soical Boat</div>
+    <div className='flex flex-col gap-6 w-full min-h-screen'>
+      <Header />
+      <VideoSection />
+    </div>
   )
 }
 
