@@ -7,7 +7,7 @@ export const VideoCard = ({data}) => {
       <iframe
         style={{}}
         className="rounded-t-xl w-full"
-        src={data.video}
+        src={`${data.video.replace(":","s:")}`}
       />
       <div className=" w-full p-2">
         <h1 className=" text-lg font-semibold text-left w-full mb-1">{data.heading}</h1>
