@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useVideoData } from "../../context/videoContext";
 
 export const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const fetchVideoData = (query) => {
-    console.log("calling api", query);
+  const {setApiData} = useVideoData();
+  const fetchVideoData = async (query) => {
+    try{
+     const res = await axios.get(`https://asia-south1-socialboat-dev.cloudfunctions.net/assignmentVideos?q=${query}&numResults=10`);   
+     setApiData(res.data);
+    }catch (e) {
+        console.log(e)
+    }
+    
   };
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      fetchVideoData(searchQuery);
+        if(searchQuery !== "") fetchVideoData(searchQuery);
     }, 500);
 
     return () => clearTimeout(timer);
