@@ -4,21 +4,31 @@ import { useVideoData } from "../../context/videoContext";
 
 export const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const {setApiData, getfilteredtags} = useVideoData();
+  const {
+    setApiData,
+    getfilteredtags,
+    serverBusy,
+    setServarBusy,
+    setSelectedFilters,
+  } = useVideoData();
   const fetchVideoData = async (query) => {
-    try{
-     const res = await axios.get(`https://asia-south1-socialboat-dev.cloudfunctions.net/assignmentVideos?q=${query}&numResults=10`);   
-     setApiData(res.data);
-     getfilteredtags(res.data)
-    }catch (e) {
-        console.log(e)
+    try {
+      const res = await axios.get(
+        `https://asia-south1-socialboat-dev.cloudfunctions.net/assignmentVideos?q=${query}&numResults=10`
+      );
+      setApiData(res.data);
+      getfilteredtags(res.data);
+      setServarBusy(false);
+      setSelectedFilters({});
+    } catch (e) {
+      setServarBusy(true);
+      setApiData(null);
     }
-    
   };
 
   useEffect(() => {
     const timer = setTimeout(() => {
-        if(searchQuery !== "") fetchVideoData(searchQuery);
+      if (searchQuery !== "") fetchVideoData(searchQuery);
     }, 500);
 
     return () => clearTimeout(timer);

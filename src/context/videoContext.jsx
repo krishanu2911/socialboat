@@ -8,6 +8,7 @@ export const VideoDataContextProvider = ({ children }) => {
   const [selectedFilters, setSelectedFilters] = useState({});
   const [videosLoading, setVideoLoading] = useState(false);
   const [filterLoading, setFilterLoading] = useState(false);
+  const [serverBusy, setServarBusy] = useState(false);
   const getFilteredVideos = () => {
     // setVideoLoading(true);
     if (Object.keys(selectedFilters).length !== 0) {
@@ -31,18 +32,18 @@ export const VideoDataContextProvider = ({ children }) => {
 
   const getfilteredtags = (data) => {
     setFilterLoading(true);
-      const tagsWithVideos = uniqueTagWithVideos;
-      for (let videodata of data?.results) {
-        for (let tag of videodata?.tags) {
-          if (!tagsWithVideos[tag]) {
-            tagsWithVideos[tag] = [];
-          }
-          tagsWithVideos[tag].push(videodata);
-          setUniqueTagWithVideos(tagsWithVideos);
+    const tagsWithVideos = uniqueTagWithVideos;
+    for (let videodata of data?.results) {
+      for (let tag of videodata?.tags) {
+        if (!tagsWithVideos[tag]) {
+          tagsWithVideos[tag] = [];
         }
+        tagsWithVideos[tag].push(videodata);
+        setUniqueTagWithVideos(tagsWithVideos);
       }
-      setFilterLoading(false);
-  }
+    }
+    setFilterLoading(false);
+  };
   const filteredVideos = getFilteredVideos();
   return (
     <VideoDataContext.Provider
@@ -55,7 +56,9 @@ export const VideoDataContextProvider = ({ children }) => {
         uniqueTagWithVideos,
         getfilteredtags,
         setSelectedFilters,
-        selectedFilters
+        selectedFilters,
+        serverBusy,
+        setServarBusy,
       }}
     >
       {children}
