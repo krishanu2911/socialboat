@@ -1,20 +1,18 @@
 import React from "react";
 import { Tags } from "./tags";
 
-export const VideoCard = () => {
+export const VideoCard = ({data}) => {
   return (
-    <div className="w-fit shadow flex flex-col gap-1 items-center rounded-xl">
+    <div className="w-full h-fit shadow flex flex-col gap-1 items-center rounded-xl">
       <iframe
         style={{}}
-        className="rounded-t-xl"
-        src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+        className="rounded-t-xl w-full"
+        src={data.video}
       />
       <div className=" w-full p-2">
-        <h1 className=" text-lg font-semibold text-left w-full mb-1">sets:siRlfh</h1>
-        <div className=" flex gap-2 w-full">
-          <Tags data={"hello"} />
-          <Tags data={"hello"} />
-          <Tags data={"hello"} />
+        <h1 className=" text-lg font-semibold text-left w-full mb-1">{data.heading}</h1>
+        <div className=" flex gap-2 w-[100%] flex-wrap">
+            {data.tags.map((item) =><div><Tags data={item} /></div>  )}
         </div>
       </div>
     </div>
