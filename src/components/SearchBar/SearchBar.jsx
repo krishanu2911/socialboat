@@ -40,7 +40,7 @@ export const SearchBar = () => {
   }, [searchQuery]);
 
   return (
-    <div className="shadow-md px-6 py-2 flex rounded-md md:w-[60%]">
+    <div className="shadow-md px-6 py-2 flex gap-2 rounded-md md:w-[60%]">
       <input
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
