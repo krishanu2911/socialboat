@@ -45,7 +45,7 @@ export const SearchBar = () => {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder="search"
-        className="w-full outline-[transparent]"
+        className="w-full outline-[transparent] focus:outline-[transparent]"
       />
       {videosLoading ? <Spinner /> : null}
     </div>
