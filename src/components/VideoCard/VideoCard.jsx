@@ -3,7 +3,7 @@ import { Tags } from "./tags";
 
 export const VideoCard = ({data}) => {
   return (
-    <div className="w-full h-fit shadow flex flex-col gap-1 items-center rounded-xl">
+    <div className="w-full h-fit  flex flex-col gap-1 items-center rounded-xl">
       <iframe
         style={{}}
         className="rounded-t-xl w-full"

@@ -10,7 +10,6 @@ export const VideoDataContextProvider = ({ children }) => {
   const [filterLoading, setFilterLoading] = useState(false);
   const [serverBusy, setServarBusy] = useState(false);
   const getFilteredVideos = () => {
-    // setVideoLoading(true);
     if (Object.keys(selectedFilters).length !== 0) {
       const updatedVideoData = {};
 
@@ -24,7 +23,6 @@ export const VideoDataContextProvider = ({ children }) => {
       }
       return Object.values(updatedVideoData);
     }
-    // setVideoLoading(false);
     return apiData?.results;
   };
 
@@ -59,6 +57,8 @@ export const VideoDataContextProvider = ({ children }) => {
         selectedFilters,
         serverBusy,
         setServarBusy,
+        setVideoLoading,
+        videosLoading
       }}
     >
       {children}

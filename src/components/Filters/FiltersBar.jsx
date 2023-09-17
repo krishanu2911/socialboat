@@ -15,9 +15,9 @@ export const FiltersBar = () => {
     }
   };
   return (
-    <div className=" w-full flex justify-center items-center">
+    <div className=" w-full flex justify-center items-center flex-wrap md:px-20 px-5">
       <div className="">
-        <form className=" flex gap-4 justify-center items-center">
+        <form className="flex-wrap flex gap-4 justify-center items-center">
           {uniqueTagWithVideos &&
             Object.keys(uniqueTagWithVideos).map((item) => {
               return (
